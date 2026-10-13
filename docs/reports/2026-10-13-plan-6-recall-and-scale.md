@@ -8,7 +8,7 @@ status: done
 ---
 
 Measured at main `feef80c` (release build), 2026-10-13. Full tables: `docs/reports/2026-10-12-engine-parity.md`, section
-"After Plan 6 (2026-10-13)". The codegraph-mcp head-to-head was not run: it is the founder's timing and is still pending.
+"After Plan 6 (2026-10-13)". The codegraph-mcp head-to-head was not run: it is the maintainer's timing and is still pending.
 
 ## Targets vs measured
 

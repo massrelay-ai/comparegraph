@@ -447,7 +447,7 @@ The sections above are left as written. This section re-measures at main `feef80
 the Plan 6 C2 adapter (`providers/crg`, conformance gate per language), the same committed gold labels (`fixtures/gold/*/calls.jsonl`,
 150 sites per project, two readers, labels unchanged), scored with `scripts/gold-score.sh` in fresh workspaces. Host load during the
 gold scoring was 5 to 9 on 40 cores (scoring is not timed); build timings below ran at load 6 to 15 and are read as ratios between
-binaries measured back to back. The codegraph-mcp head-to-head is NOT re-run here: it is the founder's timing and still pending.
+binaries measured back to back. The codegraph-mcp head-to-head is NOT re-run here: it is the maintainer's timing and still pending.
 
 ### Gold standard, after Plan 6 (precision / recall; repo-target sites in brackets)
 
