@@ -19,7 +19,7 @@ Go recall ≥ 0.60, pooled recall ≥ 0.72 with precision ≥ 0.96; openclaw ful
   A need to cross the line is reported, not done. Shared: nothing. `Cargo.lock` changes only by ruling.
 - Precision invariants stand (no name-only 1.0 edge; unknown receivers bind nothing; builtins first; a module-table reference binds only an imported or same-file function).
 - `scripts/gold-score.sh <project-copy> <engine>` (Lane A builds it first, from `scripts/compare-engines.sh`'s scorer) scores an engine's run against `fixtures/gold/<project>/calls.jsonl`; every Lane A task reports before→after gold P/R on hono and caddy, and the pooled number.
-- Determinism, the envelope, vendored files byte-identical, clippy `-D warnings`, tests green, trailer `Co-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>`.
+- Determinism, the envelope, vendored files byte-identical, clippy `-D warnings`, tests green, the commit attribution trailer.
 
 ## Review Focus
 1. A TS call inside a `describe()` body or at module level attributed to a new `describe`/file-scope node must not rescue dead-code candidates in non-entry files (same rule as A1 of Plan 5) → A1.
@@ -78,7 +78,7 @@ A small Python script (shipped under `providers/crg/`, no product dependency —
 - [ ] Commit `feat(crg): the code-review-graph adapter and the agreement score`.
 
 ## After the lanes: the re-measure and the codegraph head-to-head
-Re-run `scripts/compare-engines.sh` on the five projects and append "After Plan 6" with the gold table (both engines, and crg-through-adapter); re-run the codegraph-mcp head-to-head from the proof ONLY when no other codegraph process is alive on the host (`pgrep -af codegraph-mcp` empty — the founder's call on timing); append to the proof report.
+Re-run `scripts/compare-engines.sh` on the five projects and append "After Plan 6" with the gold table (both engines, and crg-through-adapter); re-run the codegraph-mcp head-to-head from the proof ONLY when no other codegraph process is alive on the host (`pgrep -af codegraph-mcp` empty — the maintainer's call on timing); append to the proof report.
 
 ## Self-review
 Each "behind" from the Plan 5 re-measure has a task (TS A1/A3, Go A2); scale from the proof (B1–B3); noise (A4); the plugin promise of spec §6b (C1–C2); Review Focus mapped A1, A2, B1, C1, C2. Lanes share no file.

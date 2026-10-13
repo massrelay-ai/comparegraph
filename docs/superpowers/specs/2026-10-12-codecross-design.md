@@ -1,7 +1,7 @@
 ---
 title: CompareGraph — design
 date: 2026-10-12
-status: draft for the founder's review (revised 2026-10-12 evening: Rust core; parser layer taken from graphmind; §2b modes, §2c family packs, §6b plugins, §9b envelope, §15 standards)
+status: draft for the maintainer's review (revised 2026-10-12 evening: Rust core; parser layer taken from graphmind; §2b modes, §2c family packs, §6b plugins, §9b envelope, §15 standards)
 ---
 
 # CompareGraph — design (2026-10-12)
@@ -15,7 +15,7 @@ their own product or with each other.
 
 What it is NOT: a diff tool, a reverse-engineering tool, a wiki written by a model, a fork of any engine.
 
-## 2. Decisions carried into the design (the founder, 2026-10-12)
+## 2. Decisions carried into the design (the maintainer, 2026-10-12)
 - Fully external: its own repo, licence (Apache-2.0), docs and method. No link to any other project's tree. Study material stays outside the repository.
 - A real engine with a persistent store and a call surface — not scripts that re-walk clones on every run.
 - Our own STANDARD (the CompareGraph Graph schema) and our own METHOD (markdown skills); external graph libraries plug in as adapters,
@@ -24,7 +24,7 @@ What it is NOT: a diff tool, a reverse-engineering tool, a wiki written by a mod
 - The product shape of morluto/rea (MIT) is the model: evidence with a confidence class, provenance, a typed location and
   limitations on every answer; inward rings; named contracts generated into a catalog; `setup` and `doctor` for agent clients;
   conformance per provider. Nothing of REA's subject (binaries, Ghidra, Hopper) applies.
-- **Language (the orchestrator's choice, 2026-10-12, on the founder's question "Rust rather than Python?"): Rust core, npm shell.**
+- **Language (the orchestrator's choice, 2026-10-12, on the maintainer's question "Rust rather than Python?"): Rust core, npm shell.**
   Python is never our base; code-review-graph stays an optional external engine run as a subprocess. The core — parser, store,
   graph, relatedness, exports, the MCP server and the CLI — is ONE Rust crate; tree-sitter's first-class binding is Rust, the
   clones are large (openclaw ≈ 10 M lines, hermes-agent ≈ 1.5 M), and a Rust binary ships with no runtime. Distribution is an
@@ -35,7 +35,7 @@ What it is NOT: a diff tool, a reverse-engineering tool, a wiki written by a mod
 - Licence policy for code taken from others: MIT / Apache-2.0 / BSD modules may be taken whole with their attribution header and
   a row in `THIRD_PARTY_NOTICES.md`; AGPL / GPL / fair-code / community-licensed code is never copied; no product is forked.
 
-## 2b. The workflow — start from a working root or from an empty folder, add OSS, adopt or reject each (the founder, 2026-10-12)
+## 2b. The workflow — start from a working root or from an empty folder, add OSS, adopt or reject each (the maintainer, 2026-10-12)
 A workspace starts in one of two ways and runs the same flow afterwards:
 1. **From a working root** — `comparegraph init --root-repo <path>`: your own repository is registered with `role = root`; every clone
    added later is a comparator against it. Claims on the root are "we have it"; claims on comparators are "they have it"; gaps and
@@ -52,7 +52,7 @@ supersedes) — append-only, the latest wins, no row means `undecided`. **The en
 (or an agent on a person's instruction, named as the author) makes, and shows what is undecided. Nothing in the engine requires a
 root; everything works from the empty folder.
 
-**Tracing (the founder, 2026-10-12: "standardised tracing"):** `claim` and `decision` are append-only with a `supersedes_id`; `run` is
+**Tracing (the maintainer, 2026-10-12: "standardised tracing"):** `claim` and `decision` are append-only with a `supersedes_id`; `run` is
 dated per build; `location` carries the content hash it was resolved against. Together they answer, for any cell: who wrote it, when,
 from which run, against which lines, what it replaced, and whether the code has moved since. `export json` includes the trail; the
 vault shows the latest and links the history.
@@ -127,7 +127,7 @@ pub trait GraphProvider {
   crates depend on its rocksdb core crate, and one maintainer; code-review-graph — Python. Files, symbols, `contains`, `imports`,
   direct `calls` from the extractors; communities ported from code-review-graph's `communities.py` (Leiden via a Rust graph
   crate, the naming and cohesion heuristics, fixed seed). The reference provider is the baseline every other adapter is
-  compared with, and the zero-install path. (The founder, 2026-10-12: "I prefer Rust versions — refactor or fork the Rust OSS
+  compared with, and the zero-install path. (The maintainer, 2026-10-12: "I prefer Rust versions — refactor or fork the Rust OSS
   and patch from the Python code, whatever gives the best result faster." Decided: take the parser layer whole, write the
   rest; never a product fork.)
 - **crg** (`providers/crg`): runs `code-review-graph build` as a subprocess on the clone (a tool the user installed with pip; never
@@ -180,7 +180,7 @@ work is verified (the command and its expected output). The method is the discip
 | `add <path\|url>` | registers a clone (surface row: head, licence from LICENSE, manifest, stars if a remote) | path missing; licence unreadable → lane `study` with a warning |
 | `build [repo] [--provider p] [--providers a,b]` | one run per repo: nodes, edges, communities, store hash | provider not conformant; 0 files parsed |
 | `family add <name>` / `family check` | registers `families/<name>/rows.md` (frontmatter: name, groups, tiers; a table: id, definition, counts-as-has, tier, weight) | duplicate ids; a row with no definition |
-| `family propose <name> [--repos …]` | a DRAFT taxonomy from the corpus, no LLM: module, community and symbol-name terms that recur across the named clones, with counts per clone, written as candidate rows (`tier: candidate`) a person or an agent edits into `rows.md` (the founder, 2026-10-12: "family grouping needs llm right?" — the draft does not; the names, definitions and what counts as `has` do) | fewer than 2 built clones |
+| `family propose <name> [--repos …]` | a DRAFT taxonomy from the corpus, no LLM: module, community and symbol-name terms that recur across the named clones, with counts per clone, written as candidate rows (`tier: candidate`) a person or an agent edits into `rows.md` (the maintainer, 2026-10-12: "family grouping needs llm right?" — the draft does not; the names, definitions and what counts as `has` do) | fewer than 2 built clones |
 | `relate [repo] [family]` | scores each clone against each family; writes `relatedness` | no build yet |
 | `decide <repo> adopt\|reject\|park --why … [--by …]` | the disposition of the clone for this workspace (§2b); a new row supersedes the old (history kept in `run`-style dated rows) | empty `--why` |
 | `init [--root-repo <path>]` / `root set <repo>` | creates the workspace; registers or promotes the root | a second root |
@@ -193,7 +193,7 @@ work is verified (the command and its expected output). The method is the discip
 | `doctor` | §7.5 | — |
 | `setup` (npm shell) | registers the MCP with each agent client found, additively, plan shown first, backup kept | — |
 
-## 9b. One envelope for every answer — usable by any tool, cheap in tokens (the founder: "any tools, robust standardised, save tokens")
+## 9b. One envelope for every answer — usable by any tool, cheap in tokens (the maintainer: "any tools, robust standardised, save tokens")
 Every verb, on the CLI, over MCP and through the library, answers with the same envelope:
 ```json
 { "ok": true, "verb": "map", "schema": 1, "data": { … }, "evidence": { "confidence": "observed", "limitations": [ … ] },

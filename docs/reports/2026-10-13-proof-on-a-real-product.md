@@ -137,7 +137,7 @@ store exports only the two repos that have a run.
 5. `relate` gave `related` to everything with all 12 rows as the basis; `map` has substring noise.
 6. `export csv` requires `--out` while `export json` writes to stdout; the README example may not match.
 
-## 6. Fit for the founder's use
+## 6. Fit for the maintainer's use
 
 Fit for the read side and the evidence discipline; not yet fit for the claim "compare against other open-source
 projects" until the build crash is fixed. What held: fast graph queries with honest envelopes (truncation,

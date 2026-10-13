@@ -12,7 +12,7 @@ taxonomy author yet; each row says what would make us change it.
 | a feature is touched by a symbol OR a community candidate | require a symbol | communities give recall on module-level features | false `related` bands |
 | bands: related at or above 0.5, adjacent at or above 0.2 | calibrated thresholds | arbitrary | thresholds measured on labelled clones |
 | a `none` backed by the engine's own search is `derived` | `observed` or `inferred` | the search is the engine's, the judgement is the author's | a reviewer who reads it differently |
-| no MCP decide tool; a decision is a CLI act | an MCP tool requiring `by` | keeps adopt/reject a human act | the founder's call |
+| no MCP decide tool; a decision is a CLI act | an MCP tool requiring `by` | keeps adopt/reject a human act | the maintainer's call |
 | `relate` over MCP reads stored rows only and does not compute | compute on call | keeps MCP read-only except `claim` | agents needing fresh scores in one call |
 | matrix: a stale location shows `unknown*`; prevalence counts comparators only, root excluded | count the root; show the old verdict | a stale cell must not read as evidence | users who want the last verdict visible |
 | communities: connected components over import and call file edges, split by directory above 30% of files (minimum 8) | label propagation or Leiden | deterministic and cheap | flat packages (srclight 50%) need a graph split |

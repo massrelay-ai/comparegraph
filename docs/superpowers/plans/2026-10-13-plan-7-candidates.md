@@ -1,20 +1,20 @@
 # Plan 7 candidates — 2026-10-13
 
 Not a plan yet: the scope that waits on Plan 6's re-measure. A plan file follows a brainstorm; this note records what the
-founder asked and what the lanes left behind, so nothing is re-derived from a transcript.
+maintainer asked and what the lanes left behind, so nothing is re-derived from a transcript.
 
-## From the founder (2026-10-13)
+## From the maintainer (2026-10-13)
 
 "Since we are using this as standardization, do we need to include metrics, structure prioritization, etc.? Does this relate
 to our structure?" — answered: metrics yes, prioritization no, interoperability as exports.
 
 - **Feature stats export (metrics as data).** Per feature: how many comparators carry it, files / nodes / edges behind it,
   `tests-for` coverage, the comparator's licence. Pure counts over the store; no model. A prioritization formula does NOT go in
-  the tool — the weights (tenant pull, founder calls, what a port displaces) belong to the user's own judging process.
+  the tool — the weights (tenant pull, maintainer calls, what a port displaces) belong to the user's own judging process.
 - **Deterministic taxonomy baseline.** `family propose` already drafts families without a model; make the accepted rows carry
   their provenance (`drafted` / `edited`) so a taxonomy can be audited for where a person or an agent changed the draft.
 
-## From the massrelay terminal's inbox (`docs/inbox/2026-10-13-from-the-massrelay-terminal.md`)
+## From a downstream consumer (a project that scores feature cells from our graph records)
 
 1. `claim import <csv> --author <file>`: our-side claims fed from a tracker CSV.
 2. A graph-backed `absent` verdict: no node of the named kind in the clone, with the searched terms recorded.
@@ -37,5 +37,5 @@ to our structure?" — answered: metrics yes, prioritization no, interoperabilit
 - **crg adapter.** A failed later provider drops the agreement table of earlier pairs; `files_parsed` is crg's own stdout count;
   a conform result from a partial fixtures directory passes the gate for the missing languages (document or guard).
 - **Port kit export.** For an adopted feature: the files, line ranges, licence text and attribution header a coding agent needs
-  to take the module whole. This is the "systematic adopt" the founder asked about — a feature, not a skill: the method skill
+  to take the module whole. This is the "systematic adopt" the maintainer asked about — a feature, not a skill: the method skill
   `using-comparegraph` already carries the workflow, and the adoption criteria stay the user's.
